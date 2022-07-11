@@ -1,0 +1,19 @@
+{
+  "name": "movies-app-api-rest",
+  "version": "1.0.0",
+  "description": "Curso practico consumo de API REST",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacielRios/Movies-APP-API-REST.git"
+  },
+  "author": "JacielRM",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JacielRios/Movies-APP-API-REST/issues"
+  },
+  "homepage": "https://github.com/JacielRios/Movies-APP-API-REST#readme"
+}
