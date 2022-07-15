@@ -1,3 +1,227 @@
-body{
-    background-color: red;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --base-dark: #393E46;
+    --very-dark: #222831;
+    --white: #ffffff;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Dosis', sans-serif;
+}
+
+body {
+    background-color: var(--white);
+}
+
+.search-container {
+    display: flex;
+    justify-content: content;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: var(--very-dark);
+}
+
+.search-container .search-input__container {
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.search-input__container input {
+    width: 90%;
+    height: 100%;
+    font-size: 2rem;
+    padding-left: 5px;
+    border-radius: 10px;
+}
+
+.search-container span {
+    margin-left: 5px;
+}
+
+.search-container span img {
+    width: 24px;
+}
+
+.mostPopular {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 280px;
+    margin-bottom: 15px;
+}
+
+.mostPopular .mostPopular-container {
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.mostPopular .mostPopular-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trending-container {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.trending-container p {
+    font-size: 2rem;
+    margin-left: 15px;
+    width: 100%;
+}
+
+.trending-container .trending-movie {
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 140px;
+    height: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.trending-movie img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.genres-container {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.genres-container p{
+    font-size: 2rem;
+    color: #000;
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+.genres-container .genre-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 160px;
+    height: 220px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgb(2,0,36);
+    background: linear-gradient(142deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 0%, rgba(2,0,84,1) 24%, rgba(0,63,148,1) 84%, rgba(0,95,115,1) 100%);
+}
+.genre-card p{
+    font-size: 3rem;
+    color: var(--white);
+    margin: 0;
+}
+.genre-card img {
+    width: 50%;
+    object-fit: cover;
+}
+
+.background-poster{
+    height: 50vh;
+    position: relative;
+}
+.background-poster .blur{
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    background-color: #000;
+    -webkit-box-shadow: inset 0px -58px 35px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px -58px 35px -4px rgba(0,0,0,0.75);
+    box-shadow: inset 0px -58px 35px -4px rgba(0,0,0,0.75);
+}
+.background-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    filter: contrast(1.5);
+    z-index: 1;
+    top: 0;
+}
+.background-poster p{
+    position: absolute;
+    font-size: 3.5rem;
+    color: var(--white);
+    font-weight: bold;
+    bottom: 0;
+    padding: 20px;
+    text-shadow: 5px 5px 2px #000;
+    z-index: 10;
+}
+.base-dark{
+    background-color: var(--base-dark);
+}
+.info-movie{
+    display: flex;
+    margin: 5px 15px;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: 2px;
+}
+.info-movie p{
+    padding-right: 50px;
+}
+.description-movie{
+    margin: 30px 15px;
+    width: auto;
+    height: auto;
+    font-size: 2rem;
+    color: var(--white);
+}
+.white{
+    color: var(--white);
+}
+
+.search-text{
+    height: 40px;
+    font-size: 2rem;
+    margin: 10px 15px;
+}
+.search-movies__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+.search-movies__poster{
+    margin: 10px;
+    width: 40%;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.search-movies__poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.inactive {
+    display: none;
 }

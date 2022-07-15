@@ -1,15 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Movies</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles/app.css">
-    </head>
-    <body>
-        <h1>Movies</h1>
 
-        <script src="./src/main.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="">
+    <main>
+        <section class="search-container ">
+            <div class="search-input__container">
+                <input type="text" name="" id="" placeholder="Pulp fiction">
+                <span>
+                    <img src="./styles/assets/search.png" alt="">
+                </span>
+            </div>
+        </section>
+        <section class="mostPopular ">
+            <article class="mostPopular-container">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+        </section>
+        <section class="trending-container ">
+            <p>Películas populares esta semana ></p>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+        </section>
+        <section class="trending-container ">
+            <p>Series populares esta semana ></p>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+        </section>
+        <section class="genres-container ">
+            <p>Géneros</p>
+            <article class="genre-card">
+                <p>Accion</p>
+            </article>
+        </section>
+        <!-- single movie view -->
+        <section class="background-poster inactive">
+            <div class="blur">
+            </div>
+            <img src="./styles/assets/poster.jpg" alt="">
+            <p>Pulp fiction</p>
+        </section>
+        <section class="info-movie inactive">
+            <p>2 HR 34 MIN</p>
+            <p>18+</p>
+            <p>1994</p>
+        </section>
+        <section class="description-movie inactive">
+            <p>Vincent Vega and Jules Winnfield are hitmen with a penchant for philosophical discussions. Their story is
+                interwoven with those of their boss Marsellus Wallace; his wife Mia; boxer Butch Coolidge; fixer Winston
+                Wolfe and a pair of robbers.</p>
+        </section>
+        <section class="trending-container white inactive">
+            <p>Películas similares ></p>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="trending-movie">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+        </section>
+        <!-- search movies view -->
+        <section class="search-text inactive">
+            <p>< Pulp fiction</p>
+        </section>
+        <section class="search-movies__container inactive">
+            <article class="search-movies__poster">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="search-movies__poster">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="search-movies__poster">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+            <article class="search-movies__poster">
+                <img src="./styles/assets/poster.jpg" alt="">
+            </article>
+        </section>
+    </main>
+    <script src="./src/main.js"></script>
+</body>
+
 </html>
