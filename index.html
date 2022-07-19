@@ -12,44 +12,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="">
-    <main>
-        <section class="search-container ">
+<body class="base-dark">
+    <main id="main-container">
+        <header class="search-container">
             <div class="search-input__container">
-                <input type="text" name="" id="" placeholder="Pulp fiction">
-                <span>
-                    <img src="./styles/assets/search.png" alt="">
-                </span>
+                <form id="searchForm" action="">
+                    <input type="text" name="" id="" placeholder="Pulp fiction">
+                    <button id="searchButton">
+                        <img src="./styles/assets/search.png" alt="">
+                    </button>
+                </form>
             </div>
-        </section>
-        <section class="mostPopular ">
-            <article class="mostPopular-container">
+        </header>
+        <section class="mostPopular">
+            <!-- <article class="mostPopular-container">
                 <img src="./styles/assets/poster.jpg" alt="">
-            </article>
+            </article> -->
         </section>
-        <section class="trending-container ">
-            <p>Películas populares esta semana ></p>
+        <p id="trendButton">Películas populares esta semana <button id="trendButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <section id="trending-movies" class="trending-container">
             <article class="trending-movie">
                 <img src="./styles/assets/poster.jpg" alt="">
-            </article>
-            <article class="trending-movie">
-                <img src="./styles/assets/poster.jpg" alt="">
-            </article>
+            </article> 
         </section>
-        <section class="trending-container ">
-            <p>Series populares esta semana ></p>
-            <article class="trending-movie">
+        <p id="trendSeriesButton">Series populares esta semana <button id="trendSeriesButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <section class="trending-series__container">
+            <!-- <article class="trending-serie">
                 <img src="./styles/assets/poster.jpg" alt="">
-            </article>
-            <article class="trending-movie">
-                <img src="./styles/assets/poster.jpg" alt="">
-            </article>
+                <p>Pulp fiction</p>
+            </article> -->
         </section>
-        <section class="genres-container ">
-            <p>Géneros</p>
-            <article class="genre-card">
+        <p id="headerGenres">Géneros</p>
+        <section class="genres-container">
+            <!-- <article class="genre-card">
                 <p>Accion</p>
-            </article>
+            </article> -->
         </section>
         <!-- single movie view -->
         <section class="background-poster inactive">
@@ -68,7 +65,7 @@
                 interwoven with those of their boss Marsellus Wallace; his wife Mia; boxer Butch Coolidge; fixer Winston
                 Wolfe and a pair of robbers.</p>
         </section>
-        <section class="trending-container white inactive">
+        <section id="similar-movies" class="trending-container white inactive">
             <p>Películas similares ></p>
             <article class="trending-movie">
                 <img src="./styles/assets/poster.jpg" alt="">
@@ -79,24 +76,20 @@
         </section>
         <!-- search movies view -->
         <section class="search-text inactive">
-            <p>< Pulp fiction</p>
+            <button id="backButton"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
+            <h3 id="headerGenreTitle">Pulp fiction</h3>
         </section>
         <section class="search-movies__container inactive">
-            <article class="search-movies__poster">
+            <!-- <article class="search-movies__poster">
                 <img src="./styles/assets/poster.jpg" alt="">
-            </article>
-            <article class="search-movies__poster">
-                <img src="./styles/assets/poster.jpg" alt="">
-            </article>
-            <article class="search-movies__poster">
-                <img src="./styles/assets/poster.jpg" alt="">
-            </article>
-            <article class="search-movies__poster">
-                <img src="./styles/assets/poster.jpg" alt="">
-            </article>
+            </article> -->
         </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./src/secrets.js"></script>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
+    <script src="./src/navigation.js"></script>
 </body>
 
 </html>

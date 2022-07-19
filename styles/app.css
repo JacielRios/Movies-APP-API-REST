@@ -17,6 +17,7 @@ html {
 
 body {
     background-color: var(--white);
+    color: var(--white);
 }
 
 .search-container {
@@ -38,25 +39,28 @@ body {
     width: 90%;
     height: 100%;
     font-size: 2rem;
-    padding-left: 5px;
+    padding: 3px;
+    padding-left: 10px;
     border-radius: 10px;
 }
 
-.search-container span {
-    margin-left: 5px;
+.search-container button {
+    border: none;
+    vertical-align: middle;
+    background-color: transparent;
 }
 
-.search-container span img {
+.search-container button img {
     width: 24px;
 }
 
 .mostPopular {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 280px;
     margin-bottom: 15px;
+    white-space: nowrap;
+    overflow-y: hidden; 
+    overflow-x: auto;
 }
 
 .mostPopular .mostPopular-container {
@@ -65,6 +69,8 @@ body {
     border-radius: 10px;
     background-color: #fff;
     overflow: hidden;
+    display: inline-block;
+    margin: 15px 20px;
 }
 
 .mostPopular .mostPopular-container img {
@@ -76,51 +82,104 @@ body {
 .trending-container {
     width: 100%;
     height: 250px;
-    display: flex;
-    flex-wrap: wrap;
+    white-space: nowrap;
+    overflow-y: hidden; 
+    overflow-x: auto;
+
 }
 
-.trending-container p {
+.trending-container p:nth-child(1) {
     font-size: 2rem;
     margin-left: 15px;
     width: 100%;
 }
 
+
 .trending-container .trending-movie {
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 140px;
+    height: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.trending-movie img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.trending-movie p {
+    width: 100%;
+    font-size: 1.8rem;
+    text-align: center;
+}
+#trendButton {
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    vertical-align: middle;
+    margin-left: 15px;
+} 
+#trendButton img{
+    width: 18px;
+}
+#trendSeriesButton {
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    vertical-align: middle;
+    margin-left: 15px;
+} 
+#trendSeriesButton img{
+    width: 18px;
+}
+.trending-series__container{
+    width: 100%;
+    height: 250px;
+    white-space: nowrap;
+    overflow-y: hidden; 
+    overflow-x: auto;
+}
+.trending-series__container p {
+    font-size: 2rem;
+    margin-left: 15px;
+    width: 100%;
+}
+.trending-series__container .trending-serie {
     margin-left: 15px;
     margin-top: 10px;
     width: 140px;
     height: 200px;
     border-radius: 5px;
     overflow: hidden;
+    display: inline-block;
 }
 
-.trending-movie img {
+.trending-serie img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
+#headerGenres{
+    font-size: 2rem;
+    margin-left: 15px;
+    margin-top: 10px;
+}
 .genres-container {
     width: 100%;
     height: 270px;
-    display: flex;
-    flex-wrap: wrap;
     margin-bottom: 10px;
-}
-.genres-container p{
-    font-size: 2rem;
-    color: #000;
-    margin-left: 15px;
-    margin-top: 10px;
-    width: 100%;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 .genres-container .genre-card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: inline-block;
     text-align: center;
+    line-height: 210px;
     margin-left: 15px;
     margin-top: 10px;
     width: 160px;
@@ -140,6 +199,12 @@ body {
     object-fit: cover;
 }
 
+#backButton{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    background: transparent;
+}
 .background-poster{
     height: 50vh;
     position: relative;
@@ -198,9 +263,9 @@ body {
 }
 
 .search-text{
-    height: 40px;
     font-size: 2rem;
     margin: 10px 15px;
+    color: #fff;
 }
 .search-movies__container{
     display: flex;
@@ -212,7 +277,7 @@ body {
 .search-movies__poster{
     margin: 10px;
     width: 40%;
-    height: 200px;
+    height: 230px;
     border-radius: 10px;
     overflow: hidden;
 }
