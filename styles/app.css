@@ -30,7 +30,7 @@ body {
 }
 
 .search-container .search-input__container {
-    width: 80%;
+    width: 85%;
     height: 40px;
     margin: 0 auto;
 }
@@ -60,17 +60,20 @@ body {
     margin-bottom: 15px;
     white-space: nowrap;
     overflow-y: hidden; 
-    overflow-x: auto;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
 }
 
 .mostPopular .mostPopular-container {
-    width: 90%;
+    width: 85%;
     height: 90%;
     border-radius: 10px;
     background-color: #fff;
     overflow: hidden;
     display: inline-block;
     margin: 15px 20px;
+    scroll-snap-align: center;
 }
 
 .mostPopular .mostPopular-container img {
@@ -85,7 +88,6 @@ body {
     white-space: nowrap;
     overflow-y: hidden; 
     overflow-x: auto;
-
 }
 
 .trending-container p:nth-child(1) {
@@ -232,7 +234,7 @@ body {
     filter: contrast(1.5);
 }
 .background-poster{
-    height: 50vh;
+    height: 450px;
     position: relative;
 }
 .background-poster .blur{
@@ -270,7 +272,7 @@ body {
 .info-movie{
     display: flex;
     margin: 5px 15px;
-    font-size: 1.6rem;
+    font-size: 1rem;
     color: var(--white);
     letter-spacing: 2px;
 }
@@ -281,7 +283,7 @@ body {
     margin: 30px 15px;
     width: auto;
     height: auto;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--white);
 }
 .white{
@@ -315,4 +317,127 @@ body {
 
 .inactive {
     display: none;
+}
+@media (min-width: 768px) {
+    .mostPopular {
+        height: 350px;
+    }
+    .mostPopular .mostPopular-container {
+        width: 75%;
+        height: 320px;
+        margin-right: 100px;
+    }
+    .mostPopular-container:nth-child(1){
+        margin-left: 100px;
+    }
+    .search-movies__poster{
+        width: 30%;
+        height: 320px;
+    }
+}
+@media (min-width: 830px){
+    .mostPopular {
+        height: 400px;
+    }
+    .mostPopular .mostPopular-container {
+        width: 70%;
+        height: 370px;
+        margin-right: 200px;
+        margin-bottom: 40px;
+    }
+    .mostPopular-container:nth-child(1){
+        margin-left: 200px;
+    }
+    .search-movies__poster{
+        width: 20%;
+        height: 350px;
+    }
+    .search-text{
+        margin-left: 80px;
+    }
+    .trending-container {
+        width: auto;
+        margin: 0 50px;
+    }
+    .textHeaderMovies{
+        margin-left: 60px !important;
+    }
+    .trending-series__container{
+        width: auto;
+        margin: 0 50px;
+    }
+    .textHeaderSeries{
+        margin-left: 60px !important;
+    }
+    .genres-container{
+        width: auto;
+        margin: 0 50px;
+    }
+    .textHeaderGenres{
+        margin-left: 60px !important;
+    }
+    .trending-container::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .trending-container::-webkit-scrollbar-button:increment,.trending-container::-webkit-scrollbar-button {
+        display: none;
+    } 
+    .trending-container::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+    .trending-container::-webkit-scrollbar:vertical {
+        width:5px;
+    }
+    .trending-container::-webkit-scrollbar-thumb {
+        background-color: #5a5a5a;
+        border-radius: 20px;
+    }
+    .mostPopular::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .mostPopular::-webkit-scrollbar-button:increment,.mostPopular::-webkit-scrollbar-button {
+        display: none;
+    } 
+    .mostPopular::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+    .mostPopular::-webkit-scrollbar:vertical {
+        width:5px;
+    }
+    .mostPopular::-webkit-scrollbar-thumb {
+        background-color: #5a5a5a;
+        border-radius: 20px;
+    }
+    .trending-series__container::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .trending-series__container::-webkit-scrollbar-button:increment,.trending-series__container::-webkit-scrollbar-button {
+        display: none;
+    } 
+    .trending-series__container::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+    .trending-series__container::-webkit-scrollbar:vertical {
+        width:5px;
+    }
+    .trending-series__container::-webkit-scrollbar-thumb {
+        background-color: #5a5a5a;
+        border-radius: 20px;
+    }
+    .genres-container::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .genres-container::-webkit-scrollbar-button:increment,.genres-container::-webkit-scrollbar-button {
+        display: none;
+    } 
+    .genres-container::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+    .genres-container::-webkit-scrollbar:vertical {
+        width:5px;
+    }
+    .genres-container::-webkit-scrollbar-thumb {
+        background-color: #5a5a5a;
+        border-radius: 20px;
+    }
 }
