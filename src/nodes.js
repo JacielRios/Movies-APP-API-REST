@@ -12,6 +12,12 @@ const posterBackground = $('.background-poster');
 const infoMovieContainer = $('.info-movie');
 const descriptionContainer = $('.description-movie');
 const similarMoviesPreview = $('#similar-movies');
+const movieDetailTitle = $('#movieDetailTitle');
+const movieDetailTime = $('#movieDetailTime');
+const movieDetailRelease = $('#movieDetailRelease');
+const movieDetailVote = $('#movieDetailVote');
+const movieDetailDescription = $('#movieDetailDescription');
+const headerRelatedMovies = $('#relatedMoviesHeader');
 
 // SEARCH
 const searchTextContainer = $('.search-text');
@@ -24,6 +30,8 @@ const searchBtn = $('#searchButton');
 const trendBtn = $('#trendButton');
 const trendSeriesBtn = $('#trendSeriesButton');
 const backBtn = $('#backButton');
+const backBtn2 = $('#backButton2');
+
 
 const headerGenres = $('#headerGenres'); 
 

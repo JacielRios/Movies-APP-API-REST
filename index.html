@@ -17,7 +17,7 @@
         <header class="search-container">
             <div class="search-input__container">
                 <form id="searchForm" action="">
-                    <input type="text" name="" id="" placeholder="Pulp fiction">
+                    <input type="text" name="" id="" placeholder="Spider-Man">
                     <button id="searchButton">
                         <img src="./styles/assets/search.png" alt="">
                     </button>
@@ -29,13 +29,13 @@
                 <img src="./styles/assets/poster.jpg" alt="">
             </article> -->
         </section>
-        <p id="trendButton">Películas populares esta semana <button id="trendButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <p id="trendButton">Películas populares hoy<button id="trendButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
         <section id="trending-movies" class="trending-container">
-            <article class="trending-movie">
+            <!-- <article class="trending-movie">
                 <img src="./styles/assets/poster.jpg" alt="">
-            </article> 
+            </article>  -->
         </section>
-        <p id="trendSeriesButton">Series populares esta semana <button id="trendSeriesButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <p id="trendSeriesButton">Series populares hoy <button id="trendSeriesButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
         <section class="trending-series__container">
             <!-- <article class="trending-serie">
                 <img src="./styles/assets/poster.jpg" alt="">
@@ -50,23 +50,22 @@
         </section>
         <!-- single movie view -->
         <section class="background-poster inactive">
-            <div class="blur">
-            </div>
-            <img src="./styles/assets/poster.jpg" alt="">
-            <p>Pulp fiction</p>
+            <button id="backButton"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
+            <img id="backgroundImg" alt="">
+            <p id="movieDetailTitle">Pulp fiction</p>
         </section>
         <section class="info-movie inactive">
-            <p>2 HR 34 MIN</p>
-            <p>18+</p>
-            <p>1994</p>
+            <p id="movieDetailTime">2 HR 34 MIN</p>
+            <p id="movieDetailRelease">18+</p>
+            <p id="movieDetailVote">1994</p>
         </section>
         <section class="description-movie inactive">
-            <p>Vincent Vega and Jules Winnfield are hitmen with a penchant for philosophical discussions. Their story is
+            <p id="movieDetailDescription">Vincent Vega and Jules Winnfield are hitmen with a penchant for philosophical discussions. Their story is
                 interwoven with those of their boss Marsellus Wallace; his wife Mia; boxer Butch Coolidge; fixer Winston
                 Wolfe and a pair of robbers.</p>
         </section>
+        <p id="relatedMoviesHeader">Similares</p>
         <section id="similar-movies" class="trending-container white inactive">
-            <p>Películas similares ></p>
             <article class="trending-movie">
                 <img src="./styles/assets/poster.jpg" alt="">
             </article>
@@ -76,7 +75,7 @@
         </section>
         <!-- search movies view -->
         <section class="search-text inactive">
-            <button id="backButton"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
+            <button id="backButton2"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
             <h3 id="headerGenreTitle">Pulp fiction</h3>
         </section>
         <section class="search-movies__container inactive">

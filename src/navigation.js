@@ -3,14 +3,18 @@ searchBtn.addEventListener('click', () => {
 });
 
 trendBtn.addEventListener('click', () => {
-    location.hash = '#trends';
+    location.hash = '#trendsMovies';
 });
 
 trendSeriesBtn.addEventListener('click', () => {
-    location.hash = '#trends';
+    location.hash = '#trendsSeries';
 });
 
 backBtn.addEventListener('click', () => {
+    window.history.back();
+});
+
+backBtn2.addEventListener('click', () => {
     window.history.back();
 });
 
@@ -19,13 +23,16 @@ window.addEventListener('hashchange', navigator, false);
 
 function navigator() {
     console.log({ location });
-
-    if (location.hash.startsWith('#trends')) {
-        trendsPage();
-    } else if (location.hash.startsWith('#search=')){
+    if (location.hash.startsWith('#trendsMovies')) {
+        trendsMoviesPage();
+    } else if (location.hash.startsWith('#trendsSeries')){
+        trendsSeriesPage();  
+    }else if (location.hash.startsWith('#search=')){
         searchPage();    
     } else if (location.hash.startsWith('#movie=')){
-        movieDetailsPage();    
+        movieDetailsPage();
+    }else if (location.hash.startsWith('#serie=')){
+        serieDetailsPage();      
     }  else if (location.hash.startsWith('#genre=')){
         genresPage();    
     } else {
@@ -51,6 +58,7 @@ function homePage() {
     infoMovieContainer.classList.add('inactive');
     descriptionContainer.classList.add('inactive');
     similarMoviesPreview.classList.add('inactive');
+    headerRelatedMovies.classList.add('inactive');
 
     searchTextContainer.classList.add('inactive');
     searchMoviesContainer.classList.add('inactive');
@@ -77,6 +85,7 @@ function genresPage() { // Modificar vista search
     infoMovieContainer.classList.add('inactive');
     descriptionContainer.classList.add('inactive');
     similarMoviesPreview.classList.add('inactive');
+    headerRelatedMovies.classList.add('inactive');
 
     searchTextContainer.classList.remove('inactive');
     searchMoviesContainer.classList.remove('inactive');
@@ -85,8 +94,9 @@ function genresPage() { // Modificar vista search
 
     const [hash, arrayId]= location.hash.split('=');
     const [id, nameGenre] = arrayId.split('-');
-    // console.log(id);
-    genreTitle.innerHTML = nameGenre;
+    const newName = decodeURI(nameGenre);
+
+    genreTitle.innerHTML = newName;
 
     getMoviesByGenre(id);
 }
@@ -106,9 +116,40 @@ function movieDetailsPage() {
     infoMovieContainer.classList.remove('inactive');
     descriptionContainer.classList.remove('inactive');
     similarMoviesPreview.classList.remove('inactive');
+    headerRelatedMovies.classList.remove('inactive');
 
     searchTextContainer.classList.add('inactive');
     searchMoviesContainer.classList.add('inactive');
+
+    const [_, movieId] = location.hash.split('=');
+    getMovieById(movieId);
+
+    console.log('movie details');
+}
+
+function serieDetailsPage() {
+
+    searchContainer.classList.add('inactive');
+    mostPopularPreview.classList.add('inactive');
+    trendingMoviesPreview.classList.add('inactive');
+    trendingSeriesPreview.classList.add('inactive');
+    genresPreview.classList.add('inactive');
+    trendSeriesBtn.classList.add('inactive');
+    trendBtn.classList.add('inactive');
+    headerGenres.classList.add('inactive');
+    
+    posterBackground.classList.remove('inactive');
+    infoMovieContainer.classList.remove('inactive');
+    descriptionContainer.classList.remove('inactive');
+    similarMoviesPreview.classList.remove('inactive');
+    headerRelatedMovies.classList.remove('inactive');
+
+    searchTextContainer.classList.add('inactive');
+    searchMoviesContainer.classList.add('inactive');
+
+    const [_, serieId] = location.hash.split('=');
+    
+    getSerieById(serieId);
 
     console.log('movie details');
 }
@@ -128,6 +169,7 @@ function searchPage() { // Modificar vista search
     infoMovieContainer.classList.add('inactive');
     descriptionContainer.classList.add('inactive');
     similarMoviesPreview.classList.add('inactive');
+    headerRelatedMovies.classList.add('inactive');
 
     searchTextContainer.classList.remove('inactive');
     searchMoviesContainer.classList.remove('inactive');
@@ -140,7 +182,7 @@ function searchPage() { // Modificar vista search
     console.log('Search');
 }
 
-function trendsPage() { // Modificar vista search
+function trendsMoviesPage() { // Modificar vista search
 
     searchContainer.classList.add('inactive');
     mostPopularPreview.classList.add('inactive');
@@ -155,9 +197,41 @@ function trendsPage() { // Modificar vista search
     infoMovieContainer.classList.add('inactive');
     descriptionContainer.classList.add('inactive');
     similarMoviesPreview.classList.add('inactive');
+    headerRelatedMovies.classList.add('inactive');
 
     searchTextContainer.classList.remove('inactive');
     searchMoviesContainer.classList.remove('inactive');
+
+    genreTitle.innerHTML = 'Tendencias';
+
+    getTrendingMovies();
+
+    console.log('Trends');
+}
+
+function trendsSeriesPage() { // Modificar vista search
+
+    searchContainer.classList.add('inactive');
+    mostPopularPreview.classList.add('inactive');
+    trendingMoviesPreview.classList.add('inactive');
+    trendingSeriesPreview.classList.add('inactive');
+    genresPreview.classList.add('inactive');
+    trendSeriesBtn.classList.add('inactive');
+    trendBtn.classList.add('inactive');
+    headerGenres.classList.add('inactive');
+    
+    posterBackground.classList.add('inactive');
+    infoMovieContainer.classList.add('inactive');
+    descriptionContainer.classList.add('inactive');
+    similarMoviesPreview.classList.add('inactive');
+    headerRelatedMovies.classList.add('inactive');
+
+    searchTextContainer.classList.remove('inactive');
+    searchMoviesContainer.classList.remove('inactive');
+
+    genreTitle.innerHTML = 'Tendencias';
+
+    getTrendingSeries();
 
     console.log('Trends');
 }
