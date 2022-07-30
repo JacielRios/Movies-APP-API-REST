@@ -1,3 +1,7 @@
+let maxPage;
+let page = 1;
+let infiniteScroll;
+
 searchBtn.addEventListener('click', () => {
     location.hash = `#search=${searchFormInput.value.split(" ").join("")}`;
 });
@@ -20,9 +24,15 @@ backBtn2.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
+window.addEventListener('scroll', infiniteScroll, false);
+
 
 function navigator() {
-    console.log({ location });
+    if (infiniteScroll) {
+        window.removeEventListener('scroll', infiniteScroll, { passive: false });
+        infiniteScroll = undefined;
+    }
+
     if (location.hash.startsWith('#trendsMovies')) {
         trendsMoviesPage();
     } else if (location.hash.startsWith('#trendsSeries')){
@@ -40,6 +50,9 @@ function navigator() {
     }
 
     window.scrollTo(0,0);
+    if (infiniteScroll) {
+        window.addEventListener('scroll', infiniteScroll, { passive: false });
+    }
 }
 
 function homePage() {
@@ -90,8 +103,6 @@ function genresPage() { // Modificar vista search
     searchTextContainer.classList.remove('inactive');
     searchMoviesContainer.classList.remove('inactive');
 
-    console.log('Genres');
-
     const [hash, arrayId]= location.hash.split('=');
     const [id, nameGenre] = arrayId.split('-');
     const newName = decodeURI(nameGenre);
@@ -99,6 +110,8 @@ function genresPage() { // Modificar vista search
     genreTitle.innerHTML = newName;
 
     getMoviesByGenre(id);
+
+    infiniteScroll = getPaginatedMoviesByGenre(id);
 }
 
 function movieDetailsPage() {
@@ -123,8 +136,6 @@ function movieDetailsPage() {
 
     const [_, movieId] = location.hash.split('=');
     getMovieById(movieId);
-
-    console.log('movie details');
 }
 
 function serieDetailsPage() {
@@ -150,8 +161,6 @@ function serieDetailsPage() {
     const [_, serieId] = location.hash.split('=');
     
     getSerieById(serieId);
-
-    console.log('movie details');
 }
 
 function searchPage() { // Modificar vista search
@@ -179,7 +188,9 @@ function searchPage() { // Modificar vista search
     const [_, query] = location.hash.split('=');
 
     getMoviesBySearch(query);
-    console.log('Search');
+
+    infiniteScroll = getPaginatedMoviesBySearch(query);
+
 }
 
 function trendsMoviesPage() { // Modificar vista search
@@ -206,7 +217,7 @@ function trendsMoviesPage() { // Modificar vista search
 
     getTrendingMovies();
 
-    console.log('Trends');
+    infiniteScroll = getPaginatedTrendingMovies;
 }
 
 function trendsSeriesPage() { // Modificar vista search
@@ -233,5 +244,5 @@ function trendsSeriesPage() { // Modificar vista search
 
     getTrendingSeries();
 
-    console.log('Trends');
+    infiniteScroll = getPaginatedTrendingSeries;
 }

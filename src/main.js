@@ -11,8 +11,25 @@ const API = axios.create({
 
 // UTILS
 
-function createMovies(movies, container, className) {
-  container.innerHTML = "";
+const lazyLoader = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const url = entry.target.getAttribute("data-img");
+      entry.target.setAttribute("src", url);
+    }
+  });
+});
+
+function createMovies(
+  movies,
+  container,
+  className,
+  { lazyLoad = false, clean = true } = {}
+) {
+  if (clean) {
+    container.innerHTML = "";
+  }
+
   movies.forEach((movie) => {
     const movieContainer = document.createElement("div");
     movieContainer.classList.add(className);
@@ -21,18 +38,37 @@ function createMovies(movies, container, className) {
     });
 
     const movieImg = document.createElement("img");
-    movieImg.setAttribute("alt", movie.title);
-    movieImg.setAttribute(
-      "src",
-      "https://image.tmdb.org/t/p/w500" + movie.poster_path
-    );
-    movieContainer.appendChild(movieImg);
+    if (movie.poster_path) {
+      movieImg.setAttribute("alt", movie.title);
+      movieImg.setAttribute(
+        lazyLoad ? "data-img" : "src",
+        "https://image.tmdb.org/t/p/w500" + movie.poster_path
+      );
+      movieContainer.appendChild(movieImg);
+    } else {
+      const textTitle = document.createElement("p");
+      const title = document.createTextNode(movie.title);
+      textTitle.appendChild(title);
+      movieContainer.appendChild(textTitle);
+    }
+
+    if (lazyLoad) {
+      lazyLoader.observe(movieImg);
+    }
+
     container.appendChild(movieContainer);
   });
 }
 
-function createSeries(series, container, className) {
-  container.innerHTML = "";
+function createSeries(
+  series,
+  container,
+  className,
+  { lazyLoad = false, clean = true } = {}
+) {
+  if (clean) {
+    container.innerHTML = "";
+  }
   series.forEach((serie) => {
     const serieContainer = document.createElement("div");
     serieContainer.classList.add(className);
@@ -41,12 +77,24 @@ function createSeries(series, container, className) {
     });
 
     const serieImg = document.createElement("img");
-    serieImg.setAttribute("alt", serie.title);
-    serieImg.setAttribute(
-      "src",
-      "https://image.tmdb.org/t/p/w300" + serie.poster_path
-    );
-    serieContainer.appendChild(serieImg);
+    if (serie.poster_path) {
+      serieImg.setAttribute("alt", serie.title);
+      serieImg.setAttribute(
+        lazyLoad ? "data-img" : "src",
+        "https://image.tmdb.org/t/p/w300" + serie.poster_path
+      );
+      serieContainer.appendChild(serieImg);
+    } else {
+      const textTitle = document.createElement("p");
+      const title = document.createTextNode(serie.title);
+      textTitle.appendChild(title);
+      serieContainer.appendChild(textTitle);
+    }
+
+    if (lazyLoad) {
+      lazyLoader.observe(serieImg);
+    }
+
     container.appendChild(serieContainer);
   });
 }
@@ -58,13 +106,13 @@ async function getTrendingMoviesPreview() {
 
   const movies = data.results;
   // console.log({ data, movies });
-  createMovies(movies, trendingMoviesPreview, "trending-movie");
+  createMovies(movies, trendingMoviesPreview, "trending-movie", true);
 }
 
 async function getTrendingSeriesPreview() {
   const { data } = await API("trending/tv/day");
   const series = data.results;
-  createSeries(series, trendingSeriesPreview, "trending-serie");
+  createSeries(series, trendingSeriesPreview, "trending-serie", true);
 }
 
 async function getMostPopularMoviesPreview() {
@@ -105,7 +153,33 @@ async function getMoviesByGenre(id) {
   });
 
   const movies = data.results;
-  createMovies(movies, searchMoviesContainer, "search-movies__poster");
+  maxPage = data.total_pages;
+  createMovies(movies, searchMoviesContainer, "search-movies__poster", { lazyLoad: true, clean: true });
+}
+
+function getPaginatedMoviesByGenre(id) {
+  return async function () {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    const pageIsNotMax = page < maxPage;
+
+    if (scrollIsBottom && pageIsNotMax) {
+      page++;
+      const { data } = await API("discover/movie", {
+        params: {
+          with_genres: id,
+          page,
+        },
+      });
+      const movies = data.results;
+
+      createMovies(movies, searchMoviesContainer, "search-movies__poster", {
+        lazyLoad: true,
+        clean: false,
+      });
+    }
+  };
 }
 
 async function getMoviesBySearch(query) {
@@ -116,26 +190,117 @@ async function getMoviesBySearch(query) {
   });
 
   const movies = data.results;
+  maxPage = data.total_pages;
   // console.log(movies);
-  createMovies(movies, searchMoviesContainer, "search-movies__poster");
+  createMovies(movies, searchMoviesContainer, "search-movies__poster", true);
+}
+
+function getPaginatedMoviesBySearch(query) {
+  return async function () {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    const pageIsNotMax = page < maxPage;
+
+    if (scrollIsBottom && pageIsNotMax) {
+      page++;
+      const { data } = await API("search/movie", {
+        params: {
+          query,
+          page,
+        },
+      });
+
+      const movies = data.results;
+
+      createMovies(movies, searchMoviesContainer, "search-movies__poster", {
+        lazyLoad: true,
+        clean: false,
+      });
+    }
+  };
 }
 
 async function getTrendingMovies() {
-  const { data } = await API("trending/movie/week");
+  const { data } = await API("trending/movie/day");
 
   const movies = data.results;
+  maxPage = data.total_pages;
   // console.log({ data, movies });
-  console.log("movies");
-  createMovies(movies, searchMoviesContainer, "search-movies__poster");
+  createMovies(movies, searchMoviesContainer, "search-movies__poster", {
+    lazyLoad: true,
+    clean: true,
+  });
+  // const btnLoadMore = document.createElement("button");
+  // btnLoadMore.innerText = "Cargar Mas";
+  // btnLoadMore.style.margin = "20px";
+  // btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
+  // searchMoviesContainer.appendChild(btnLoadMore);
+}
+
+async function getPaginatedTrendingMovies() {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+  const pageIsNotMax = page < maxPage;
+
+  if (scrollIsBottom && pageIsNotMax) {
+    page++;
+    const { data } = await API("trending/movie/day", {
+      params: {
+        page,
+      },
+    });
+    const movies = data.results;
+
+    createMovies(movies, searchMoviesContainer, "search-movies__poster", {
+      lazyLoad: true,
+      clean: false,
+    });
+  }
+
+  // const btnLoadMore = document.createElement("button");
+  // btnLoadMore.innerText = "Cargar Mas";
+  // btnLoadMore.style.margin = "20px";
+  // btnLoadMore.addEventListener("click", () => {
+  //   getPaginatedTrendingMovies;
+  // });
+  // searchMoviesContainer.appendChild(btnLoadMore);
 }
 
 async function getTrendingSeries() {
-  const { data } = await API("trending/tv/week");
+  const { data } = await API("trending/tv/day");
 
   const series = data.results;
+  maxPage = data.total_pages;
   // console.log({ data, movies });
-  console.log("series");
-  createSeries(series, searchMoviesContainer, "search-movies__poster");
+  // console.log(data);
+  createSeries(series, searchMoviesContainer, "search-movies__poster", {
+    lazyLoad: true,
+    clean: true,
+  });
+}
+
+async function getPaginatedTrendingSeries() {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+  const pageIsNotMax = page < maxPage;
+
+  if (scrollIsBottom && pageIsNotMax) {
+    page++;
+    const { data } = await API("trending/tv/day", {
+      params: {
+        page,
+      },
+    });
+    const series = data.results;
+
+    createSeries(series, searchMoviesContainer, "search-movies__poster", {
+      lazyLoad: true,
+      clean: false,
+    });
+  }
 }
 
 async function getMovieById(id) {
@@ -153,16 +318,16 @@ async function getMovieById(id) {
       `;
 
   const minutes = movie.runtime;
-  const hours = minutes/60;
-  const newMinutes = minutes%60;
+  const hours = minutes / 60;
+  const newMinutes = minutes % 60;
   // console.log(Math.trunc(hours), newMinutes);
 
   movieDetailTitle.textContent = movie.title;
   movieDetailTime.textContent = `${Math.trunc(hours)} HR ${newMinutes} MIN`;
-  const [year, month, day] = movie.release_date.split('-')
+  const [year, month, day] = movie.release_date.split("-");
   // console.log(year);
   movieDetailRelease.textContent = year;
-  movieDetailVote.textContent = '⭐' + movie.vote_average;
+  movieDetailVote.textContent = "⭐" + movie.vote_average;
   movieDetailDescription.textContent = movie.overview;
 
   getRelatedMoviesById(id);
@@ -191,10 +356,10 @@ async function getSerieById(id) {
       `;
 
   movieDetailTitle.textContent = serie.name;
-  movieDetailTime.textContent = serie.number_of_seasons + ' ' + 'temporadas';
-  const [year, month, day] = serie.first_air_date.split('-')
+  movieDetailTime.textContent = serie.number_of_seasons + " " + "temporadas";
+  const [year, month, day] = serie.first_air_date.split("-");
   movieDetailRelease.textContent = year;
-  movieDetailVote.textContent = '⭐' + serie.vote_average;
+  movieDetailVote.textContent = "⭐" + serie.vote_average;
   movieDetailDescription.textContent = serie.overview;
 
   getRelatedSeriesById(id);

@@ -314,7 +314,15 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
+.search-movies__poster p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: darkgray;
+    font-size: 2rem;
+}
 
 .inactive {
     display: none;
