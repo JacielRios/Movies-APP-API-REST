@@ -6,6 +6,8 @@ const mostPopularPreview = $('.mostPopular');
 const trendingMoviesPreview = $('#trending-movies');
 const trendingSeriesPreview = $('.trending-series__container');
 const genresPreview = $('.genres-container');
+const likedContainer = $('.liked-container');
+const likedHeader = $('#headerLiked');
 
 // SINGLE MOVIE VIEW
 const posterBackground = $('.background-poster');
@@ -18,6 +20,7 @@ const movieDetailRelease = $('#movieDetailRelease');
 const movieDetailVote = $('#movieDetailVote');
 const movieDetailDescription = $('#movieDetailDescription');
 const headerRelatedMovies = $('#relatedMoviesHeader');
+const likedBtn = $('#likedButton');
 
 // SEARCH
 const searchTextContainer = $('.search-text');

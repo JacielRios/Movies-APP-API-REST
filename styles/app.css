@@ -169,6 +169,36 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+.liked-container {
+    width: 100%;
+    height: 250px;
+    white-space: nowrap;
+    overflow-y: hidden; 
+    overflow-x: auto;
+}
+
+.liked-container .liked {
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 140px;
+    height: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.liked img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#headerLiked{
+    font-size: 2rem;
+    margin-left: 15px;
+    margin-top: 10px;
+}
 #headerGenres{
     font-size: 2rem;
     margin-left: 15px;
@@ -271,10 +301,29 @@ body {
 }
 .info-movie{
     display: flex;
+    align-items: center;
     margin: 5px 15px;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: var(--white);
     letter-spacing: 2px;
+}
+.info-movie .movie-btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: #656c76;
+    font-size: 1.6rem;
+    text-align: center;
+}
+.movie-btn::before{
+    content: "🤍";
+}
+.movie-btn__liked{
+    background-color: #fff !important;
+}
+.movie-btn__liked::before{
+    content: "❤️";
 }
 .info-movie p{
     padding-right: 50px;
@@ -283,7 +332,7 @@ body {
     margin: 30px 15px;
     width: auto;
     height: auto;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: var(--white);
 }
 .white{
@@ -379,6 +428,24 @@ body {
 }
 
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+::-webkit-scrollbar-button:increment,::-webkit-scrollbar-button {
+    display: none;
+} 
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+::-webkit-scrollbar:vertical {
+    width:10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #5a5a5a;
+    border-radius: 20px;
+}
+
+
 @media (min-width: 768px) {
     .mostPopular {
         height: 350px;
@@ -454,71 +521,14 @@ body {
         width: auto;
         margin: 0 50px;
     }
+    .textHeaderLiked{
+        margin-left: 60px !important;
+    }
     .textHeaderGenres{
         margin-left: 60px !important;
     }
-    .trending-container::-webkit-scrollbar {
-        -webkit-appearance: none;
+    .textHeaderLikedMovies{
+        margin-left: 60px !important;
     }
-    .trending-container::-webkit-scrollbar-button:increment,.trending-container::-webkit-scrollbar-button {
-        display: none;
-    } 
-    .trending-container::-webkit-scrollbar:horizontal {
-        height: 5px;
-    }
-    .trending-container::-webkit-scrollbar:vertical {
-        width:5px;
-    }
-    .trending-container::-webkit-scrollbar-thumb {
-        background-color: #5a5a5a;
-        border-radius: 20px;
-    }
-    /* .mostPopular::-webkit-scrollbar {
-        -webkit-appearance: none;
-    }
-    .mostPopular::-webkit-scrollbar-button:increment,.mostPopular::-webkit-scrollbar-button {
-        display: none;
-    } 
-    .mostPopular::-webkit-scrollbar:horizontal {
-        height: 5px;
-    }
-    .mostPopular::-webkit-scrollbar:vertical {
-        width:5px;
-    }
-    .mostPopular::-webkit-scrollbar-thumb {
-        background-color: #5a5a5a;
-        border-radius: 20px;
-    } */
-    .trending-series__container::-webkit-scrollbar {
-        -webkit-appearance: none;
-    }
-    .trending-series__container::-webkit-scrollbar-button:increment,.trending-series__container::-webkit-scrollbar-button {
-        display: none;
-    } 
-    .trending-series__container::-webkit-scrollbar:horizontal {
-        height: 5px;
-    }
-    .trending-series__container::-webkit-scrollbar:vertical {
-        width:5px;
-    }
-    .trending-series__container::-webkit-scrollbar-thumb {
-        background-color: #5a5a5a;
-        border-radius: 20px;
-    }
-    .genres-container::-webkit-scrollbar {
-        -webkit-appearance: none;
-    }
-    .genres-container::-webkit-scrollbar-button:increment,.genres-container::-webkit-scrollbar-button {
-        display: none;
-    } 
-    .genres-container::-webkit-scrollbar:horizontal {
-        height: 5px;
-    }
-    .genres-container::-webkit-scrollbar:vertical {
-        width:5px;
-    }
-    .genres-container::-webkit-scrollbar-thumb {
-        background-color: #5a5a5a;
-        border-radius: 20px;
-    }
+    
 }

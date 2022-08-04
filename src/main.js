@@ -9,6 +9,31 @@ const API = axios.create({
   },
 });
 
+function likedMoviesList() {
+  const item = JSON.parse(localStorage.getItem("liked-movies"));
+  let movies;
+
+  if (item) {
+    movies = item;
+  } else {
+    movies = {};
+  }
+  return movies;
+}
+
+function likeMovie(movie) {
+  const likedMovies = likedMoviesList();
+
+  // console.log(likedMovies);
+
+  if (likedMovies[movie.id]) {
+    likedMovies[movie.id] = undefined;
+  } else {
+    likedMovies[movie.id] = movie;
+  }
+
+  localStorage.setItem("liked-movies", JSON.stringify(likedMovies));
+}
 // UTILS
 
 const lazyLoader = new IntersectionObserver((entries) => {
@@ -154,7 +179,10 @@ async function getMoviesByGenre(id) {
 
   const movies = data.results;
   maxPage = data.total_pages;
-  createMovies(movies, searchMoviesContainer, "search-movies__poster", { lazyLoad: true, clean: true });
+  createMovies(movies, searchMoviesContainer, "search-movies__poster", {
+    lazyLoad: true,
+    clean: true,
+  });
 }
 
 function getPaginatedMoviesByGenre(id) {
@@ -305,7 +333,7 @@ async function getPaginatedTrendingSeries() {
 
 async function getMovieById(id) {
   const { data: movie } = await API("movie/" + id);
-
+  likedBtn.innerHTML = "";
   const movieImgUrl = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
   movieDetailImg = document.getElementById("backgroundImg");
   movieDetailImg.style.background = `
@@ -316,6 +344,24 @@ async function getMovieById(id) {
       ),
       url(${movieImgUrl})
       `;
+  //// const likedMovies = likedMoviesList();
+  //// const moviesArray = Object.values(likedMovies);
+
+  const movieBtn = document.createElement("button");
+  movieBtn.classList.add("movie-btn");
+  likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn__liked');
+  movieBtn.addEventListener("click", () => {
+    movieBtn.classList.toggle("movie-btn__liked");
+    likeMovie(movie);
+  });
+  //// moviesArray.forEach((likedMovies) => {
+  ////   if(movie.id === likedMovies.id) {
+  ////     movieBtn.classList.toggle('movie-btn__liked');
+  ////   }
+  //   // console.log(movie.id);
+  //   // console.log(likedMovies.id)
+  //// });
+  likedBtn.appendChild(movieBtn);
 
   const minutes = movie.runtime;
   const hours = minutes / 60;
@@ -371,4 +417,14 @@ async function getRelatedSeriesById(id) {
   const relatedMovies = data.results;
 
   createSeries(relatedMovies, similarMoviesPreview, "trending-movie");
+}
+
+function getLikedMovies() {
+  const likedMovies = likedMoviesList();
+  const moviesArray = Object.values(likedMovies);
+
+  createMovies(moviesArray, likedContainer, "liked", {
+    lazyLoad: true,
+    clean: true,
+  });
 }
