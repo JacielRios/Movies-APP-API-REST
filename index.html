@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="base-dark">
     <main id="main-container">
         <header class="search-container">
@@ -26,7 +28,8 @@
             <article class="mostPopular-container mostPopular-container__loading">
             </article>
         </section>
-        <p id="trendButton" class="textHeaderMovies">Películas populares hoy<button id="trendButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <p id="trendButton" class="textHeaderMovies">Películas populares hoy<button id="trendButton"><img
+                    src="./styles/assets/flecha-correcta.png" alt=""></button></p>
         <section id="trending-movies" class="trending-container">
             <article class="trending-movie trending-movie__loading">
                 <!-- <img src="./styles/assets/poster.jpg" alt=""> -->
@@ -36,7 +39,8 @@
             <article class="trending-movie trending-movie__loading">
             </article>
         </section>
-        <p id="trendSeriesButton" class="textHeaderSeries">Series populares hoy <button id="trendSeriesButton"><img src="./styles/assets/flecha-correcta.png" alt=""></button></p>
+        <p id="trendSeriesButton" class="textHeaderSeries">Series populares hoy <button id="trendSeriesButton"><img
+                    src="./styles/assets/flecha-correcta.png" alt=""></button></p>
         <section class="trending-series__container">
             <article class="trending-serie trending-serie__loading">
                 <!-- <img src="./styles/assets/poster.jpg" alt="">
@@ -71,9 +75,25 @@
         </section>
         <!-- single movie view -->
         <section class="background-poster inactive">
-            <button id="backButton"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
+            <button id="backButton"><img
+                    src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
             <img id="backgroundImg" alt="">
-            <p id="movieDetailTitle">Pulp fiction</p>
+            <div class="container__desktop">
+                <p id="movieDetailTitle">Pulp fiction</p>
+                <section class="info-movie__desktop inactive">
+                    <p id="movieDetailTime2">2 HR 34 MIN</p>
+                    <p id="movieDetailRelease2">18+</p>
+                    <p id="movieDetailVote2">1994</p>
+                    <div id="likedButton2"></div>
+                </section>
+                <section class="description-movie__desktop inactive">
+                    <p id="movieDetailDescription2">Vincent Vega and Jules Winnfield are hitmen with a penchant for
+                        philosophical discussions. Their story is
+                        interwoven with those of their boss Marsellus Wallace; his wife Mia; boxer Butch Coolidge; fixer
+                        Winston
+                        Wolfe and a pair of robbers.</p>
+                </section>
+            </div>
         </section>
         <section class="info-movie inactive">
             <p id="movieDetailTime">2 HR 34 MIN</p>
@@ -82,10 +102,12 @@
             <div id="likedButton"></div>
         </section>
         <section class="description-movie inactive">
-            <p id="movieDetailDescription">Vincent Vega and Jules Winnfield are hitmen with a penchant for philosophical discussions. Their story is
+            <p id="movieDetailDescription">Vincent Vega and Jules Winnfield are hitmen with a penchant for philosophical
+                discussions. Their story is
                 interwoven with those of their boss Marsellus Wallace; his wife Mia; boxer Butch Coolidge; fixer Winston
                 Wolfe and a pair of robbers.</p>
         </section>
+        </div>
         <p id="relatedMoviesHeader">Similares</p>
         <section id="similar-movies" class="trending-container white inactive">
             <article class="trending-movie trending-movie__loading">
@@ -98,7 +120,8 @@
         </section>
         <!-- search movies view -->
         <section class="search-text inactive">
-            <button id="backButton2"><img src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
+            <button id="backButton2"><img
+                    src="./styles/assets/simbolo-bruto-grande-del-angulo-de-la-flecha-izquierda.png" alt=""></button>
             <h3 id="headerGenreTitle">Pulp fiction</h3>
         </section>
         <section class="search-movies__container inactive">
@@ -118,4 +141,5 @@
     <script src="./src/main.js"></script>
     <script src="./src/navigation.js"></script>
 </body>
+
 </html>

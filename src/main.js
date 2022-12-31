@@ -334,6 +334,7 @@ async function getPaginatedTrendingSeries() {
 async function getMovieById(id) {
   const { data: movie } = await API("movie/" + id);
   likedBtn.innerHTML = "";
+  likedBtn2.innerHTML = "";
   const movieImgUrl = "https://image.tmdb.org/t/p/w400" + movie.poster_path;
   movieDetailImg = document.getElementById("backgroundImg");
   movieDetailImg.style.background = `
@@ -354,6 +355,14 @@ async function getMovieById(id) {
     movieBtn.classList.toggle("movie-btn__liked");
     likeMovie(movie);
   });
+
+  const movieBtn2 = document.createElement("button");
+  movieBtn2.classList.add("movie-btn");
+  likedMoviesList()[movie.id] && movieBtn2.classList.add('movie-btn__liked');
+  movieBtn2.addEventListener("click", () => {
+    movieBtn2.classList.toggle("movie-btn__liked");
+    likeMovie(movie);
+  });
   //// moviesArray.forEach((likedMovies) => {
   ////   if(movie.id === likedMovies.id) {
   ////     movieBtn.classList.toggle('movie-btn__liked');
@@ -361,6 +370,7 @@ async function getMovieById(id) {
   //   // console.log(movie.id);
   //   // console.log(likedMovies.id)
   //// });
+  likedBtn2.appendChild(movieBtn2);
   likedBtn.appendChild(movieBtn);
 
   const minutes = movie.runtime;
@@ -370,11 +380,17 @@ async function getMovieById(id) {
 
   movieDetailTitle.textContent = movie.title;
   movieDetailTime.textContent = `${Math.trunc(hours)} HR ${newMinutes} MIN`;
+  movieDetailTime2.textContent = `${Math.trunc(hours)} HR ${newMinutes} MIN`;
+
   const [year, month, day] = movie.release_date.split("-");
   // console.log(year);
   movieDetailRelease.textContent = year;
+  movieDetailRelease2.textContent = year;
   movieDetailVote.textContent = "⭐" + movie.vote_average;
+  movieDetailVote2.textContent = "⭐" + movie.vote_average;
   movieDetailDescription.textContent = movie.overview;
+  movieDetailDescription2.textContent = movie.overview;
+
 
   getRelatedMoviesById(id);
 }
@@ -390,6 +406,9 @@ async function getRelatedMoviesById(id) {
 async function getSerieById(id) {
   const { data: serie } = await API("tv/" + id);
 
+  likedBtn.innerHTML = "";
+  likedBtn2.innerHTML = "";
+  
   const serieImgUrl = "https://image.tmdb.org/t/p/w400" + serie.poster_path;
   serieDetailImg = document.getElementById("backgroundImg");
   serieDetailImg.style.background = `
@@ -403,11 +422,14 @@ async function getSerieById(id) {
 
   movieDetailTitle.textContent = serie.name;
   movieDetailTime.textContent = serie.number_of_seasons + " " + "temporadas";
+  movieDetailTime2.textContent = serie.number_of_seasons + " " + "temporadas";
   const [year, month, day] = serie.first_air_date.split("-");
   movieDetailRelease.textContent = year;
+  movieDetailRelease2.textContent = year;
   movieDetailVote.textContent = "⭐" + serie.vote_average;
+  movieDetailVote2.textContent = "⭐" + serie.vote_average;
   movieDetailDescription.textContent = serie.overview;
-
+  movieDetailDescription2.textContent = serie.overview;
   getRelatedSeriesById(id);
 }
 
@@ -428,3 +450,4 @@ function getLikedMovies() {
     clean: true,
   });
 }
+ 
